@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo de Mercado - Nexus Propriedades</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        
+        :root {
+            --nexus-orange: #ff5518;
+            --medium-gray: #383740;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --plumb-gray: #bdb2c9;
+            --section-padding: 4rem 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--nexus-orange);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            background-color: var(--medium-gray);
+            color: var(--white);
+            padding: var(--section-padding);
+            text-align: center;
+        }
+
+        .hero .logo {
+            max-width: 250px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero .address {
+            font-weight: 300;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* --- Realtor Section --- */
+        .realtor-section {
+            background-color: var(--light-gray);
+            padding: var(--section-padding);
+        }
+        
+        .realtor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .realtor-image-container {
+            text-align: center;
+        }
+        
+        .realtor-image-container img {
+            max-width: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--nexus-orange);
+        }
+
+        .realtor-info h3 {
+            color: var(--nexus-orange);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .realtor-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .realtor-details {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .realtor-details h4 {
+            grid-column: 1 / -1;
+            color: var(--medium-gray);
+            border-bottom: 2px solid var(--plumb-gray);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .realtor-details ul {
+            list-style: none;
+        }
+        
+        .realtor-details li {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23ff5518"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat left center;
+            padding-left: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Property Details Section --- */
+        .property-details-section {
+            padding: var(--section-padding);
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .property-grid .card h4 {
+            color: var(--nexus-orange);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-grid ul {
+            list-style: none;
+        }
+
+        .property-grid li {
+            margin-bottom: 0.75rem;
+        }
+
+        .property-grid .main-data li {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding: 0.5rem 0;
+        }
+        .property-grid .main-data li strong {
+            color: var(--medium-gray);
+        }
+        
+        .positive-points li {
+           background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%2328a745" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>') no-repeat left center;
+            padding-left: 30px;
+        }
+
+        .negative-points li {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23dc3545" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 13h-8v-2h8v2z"/></svg>') no-repeat left center;
+            padding-left: 30px;
+        }
+
+        /* --- Location Section --- */
+        .location-section {
+            padding: var(--section-padding);
+            background-color: var(--light-gray);
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        .location-map img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .location-text {
+            font-size: 1.1rem;
+        }
+
+        /* --- Comparables Section --- */
+        .comparables-section {
+            padding: var(--section-padding);
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: var(--medium-gray);
+            color: var(--white);
+        }
+        tbody tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        tbody tr:hover {
+            background-color: var(--plumb-gray);
+            color: var(--white);
+        }
+        
+        /* --- Pricing Section --- */
+        .pricing-section {
+            padding: var(--section-padding);
+            background-color: var(--light-gray);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thermometer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thermometer {
+            width: 80px;
+            height: 350px;
+            background: #e0e0e0;
+            border-radius: 40px;
+            position: relative;
+            border: 5px solid var(--medium-gray);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .thermometer-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #28a745, #ffc107, #dc3545);
+            border-radius: 35px;
+        }
+
+        .price-levels {
+           display: flex;
+           flex-direction: column;
+           gap: 1.5rem;
+        }
+        
+        .price-level {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .price-level span {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .price-level strong {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .competitive {
+            background-color: #28a745;
+        }
+        .market {
+            background-color: #ffc107;
+        }
+        .unlikely {
+            background-color: #dc3545;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--medium-gray);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .logo {
+            max-width: 180px;
+            margin-bottom: 1.5rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--nexus-orange);
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <img src="https://i.ibb.co/6P2T8gv/logo-nexus.png" alt="Logo Nexus" class="logo">
+        <h1>Olá, Otávio Corrêa</h1>
+        <p>Montamos um estudo de mercado para o seu imóvel de endereço:</p>
+        <p class="address">Rua Humberto Peracchi da Costa, nº 70, CEP 96090-432, Laranjal, Pelotas</p>
+    </header>
+
+    <main>
+        <section class="realtor-section">
+            <div class="container">
+                <h2 class="section-title">O seu corretor</h2>
+                <div class="realtor-grid">
+                    <div class="realtor-image-container">
+                        <img src="https://drive.google.com/uc?export=download&id=133s9pa8WiP5FkaO9swtinPZwrwr-CIeI" alt="Corretor Luiz Corrêa">
+                    </div>
+                    <div class="realtor-info">
+                        <h3>Luiz Corrêa</h3>
+                        <p><strong>CRECI:</strong> 28189</p>
+                        <p><strong>Telefone:</strong> <a href="https://wa.me/5553984740113" target="_blank">53 98474-0113</a></p>
+                        <p><strong>Email:</strong> lfc@nexuspropriedades.com.br</p>
+
+                        <div class="realtor-details">
+                            <div>
+                                <h4>Formação</h4>
+                                <ul>
+                                    <li>Engenheiro Mecânico (Pós Grad. em Engenharia)</li>
+                                    <li>Técnico em Transações Imobiliárias</li>
+                                    <li>Treinamento Internacional Brian Buffini</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Experiência</h4>
+                                <ul>
+                                    <li>+15 anos na Engenharia</li>
+                                    <li>Negociações e Contratos</li>
+                                    <li>+3 anos no Mercado Imobiliário</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="property-details-section">
+            <div class="container">
+                <h2 class="section-title">Dados Principais do seu Imóvel</h2>
+                <div class="property-grid">
+                    <div class="card main-data">
+                         <h4>Características</h4>
+                         <ul>
+                            <li><span>Área Privativa (m²):</span> <strong>240 m²</strong></li>
+                            <li><span>Nº Dormitórios:</span> <strong>3</strong></li>
+                            <li><span>Nº Suítes:</span> <strong>1</strong></li>
+                            <li><span>Nº Banheiros:</span> <strong>3</strong></li>
+                            <li><span>Nº Vagas:</span> <strong>2</strong></li>
+                         </ul>
+                    </div>
+                    <div class="card positive-points">
+                        <h4>Pontos Favoráveis</h4>
+                        <ul>
+                            <li>Casa em condomínio, com possibilidade de segundo piso</li>
+                            <li>Possui Habite-se e documentação em dia</li>
+                            <li>Possui garagem para 2 carros</li>
+                        </ul>
+                    </div>
+                    <div class="card negative-points">
+                        <h4>Pontos a Melhorar</h4>
+                        <ul>
+                            <li>165 anúncios casas entre 200 e 250m² no Laranjal em Pelotas (Vivareal)</li>
+                            <li>Imóvel não passou por reforma</li>
+                            <li>Não tem lareira nem churrasqueira</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-section">
+            <div class="container">
+                <h2 class="section-title">Localização Estratégica</h2>
+                <div class="location-grid">
+                    <div class="location-text">
+                        <p>O seu imóvel está muito bem localizado, com destaque para a posição estratégica na zona alta (+-30m acima do nível do mar), e ao mesmo tempo ter a proximidade em relação à praia do Laranjal (1 a 2km). Também vale ressaltar que nos arredores se encontram: o Colégio Santa Mônica, o complexo de lojas, restaurantes, e farmácia, o Posto do Guga, entre outras referências.</p>
+                    </div>
+                    <div class="location-map">
+                        <img src="https://drive.google.com/uc?export=download&id=1BlsEN5KYZfrXOuZC38GX3hNDned2FE1N" alt="Mapa da Localização do Imóvel">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparables-section">
+            <div class="container">
+                <h2 class="section-title">Imóveis Similares na Região</h2>
+                <p class="text-center">Analisamos 10 imóveis concorrentes na mesma região para entender o posicionamento de mercado.</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Imóvel</th>
+                                <th>Área (m²)</th>
+                                <th>Dorm.</th>
+                                <th>Suítes</th>
+                                <th>Ban.</th>
+                                <th>Vagas</th>
+                                <th>Preço (R$)</th>
+                                <th>Valor/m²</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Casa Alphaville 01</td><td>240</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.700.000</td><td>R$7.083,33</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 02</td><td>220</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.750.000</td><td>R$7.954,54</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 03</td><td>235</td><td>3</td><td>2</td><td>2</td><td>3</td><td>R$2.000.000</td><td>R$8.510,64</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 04</td><td>215</td><td>3</td><td>1</td><td>2</td><td>1</td><td>R$1.850.000</td><td>R$8.604,65</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 05</td><td>247</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.690.000</td><td>R$6.842,11</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 06</td><td>229</td><td>3</td><td>0</td><td>1</td><td>2</td><td>R$1.650.000</td><td>R$7.205,24</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 07</td><td>200</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.720.000</td><td>R$8.600,00</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 08</td><td>250</td><td>3</td><td>1</td><td>3</td><td>2</td><td>R$1.980.000</td><td>R$7.920,00</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 09</td><td>243</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.710.000</td><td>R$7.037,04</td>
+                            </tr>
+                            <tr>
+                                <td>Casa Alphaville 10</td><td>221</td><td>3</td><td>0</td><td>2</td><td>2</td><td>R$1.775.000</td><td>R$8.031,67</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="container">
+                <h2 class="section-title">Resultados do Estudo de Precificação</h2>
+                <div class="pricing-grid">
+                    <div class="thermometer-container">
+                        <div class="thermometer">
+                            <div class="thermometer-fill"></div>
+                        </div>
+                    </div>
+                    <div class="price-levels">
+                        <div class="price-level unlikely">
+                            <span>Preço Improvável</span>
+                            <strong>R$1.875.287</strong>
+                        </div>
+                        <div class="price-level market">
+                            <span>Preço de Mercado</span>
+                            <strong>R$1.734.500</strong>
+                        </div>
+                        <div class="price-level competitive">
+                            <span>Preço Competitivo</span>
+                            <strong>R$1.712.865</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <img src="https://i.ibb.co/6P2T8gv/logo-nexus.png" alt="Logo Nexus" class="logo">
+            <p><strong>Nexus Propriedades</strong></p>
+            <p>Este é um estudo de mercado preliminar. Para mais informações, entre em contato.</p>
+            <p>
+                <strong>Luiz Corrêa</strong> | 
+                <a href="https://wa.me/5553984740113" target="_blank">53 98474-0113</a> | 
+                <a href="mailto:lfc@nexuspropriedades.com.br">lfc@nexuspropriedades.com.br</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
